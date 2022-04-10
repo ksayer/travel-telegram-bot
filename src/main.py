@@ -1,13 +1,15 @@
 import telebot
+import requests
+import json
+import configs
+from typing import List
+from telebot import types
 from decouple import config
+
 from src.botrequests import lowprice
 from src.botrequests import highprice
 from src.botrequests import bestdeal
-from telebot import types
 from src.botrequests import history
-import configs
-from typing import List
-import requests
 
 
 RAPIDAPI_KEY = config('RAPIDAPI_KEY')
@@ -39,6 +41,7 @@ def send_help(message: types.Message) -> None:
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message: types.Message) -> None:
+    print('start')
     """
     Ответ на команду start
     """
@@ -434,7 +437,7 @@ def show_result(id_user: int, date_create: str) -> None:
             bestdeal.get_hotels_info(id_user, date_create)
 
         hotels: List[dict] = history.get_hotels(id_user, date_create)
-
+        print(json.dumps(hotels, indent=4))
         for hotel in hotels:
 
             if history.get_photo(id_user, date_create):

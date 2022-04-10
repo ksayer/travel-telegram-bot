@@ -10,3 +10,5 @@ testSQL.py
 bd.py
 logs/
 database.db
+src/
+python_basic_env/

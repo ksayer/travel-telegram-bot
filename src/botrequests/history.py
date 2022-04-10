@@ -1,8 +1,9 @@
 import sqlite3
 import datetime
-from typing import List
 import re
+from typing import List
 from telebot import types
+
 from src import configs
 
 connect = sqlite3.connect('database.db', check_same_thread=False)
